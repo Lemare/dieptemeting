@@ -1,19 +1,39 @@
-testMeting: testMeting.o Meting.o Punt.o Insprong.o
-	g++ -o testMeting testMeting.o Meting.o Punt.o Insprong.o
-	
-testMeting.o: testMeting.cpp Meting.h Punt.h
-	g++ -c testMeting.cpp
+CXXFLAGS      = -g -std=c++11
 
-testPunt: testPunt.o Punt.o
-	g++ -o testPunt testPunt.o Punt.o
-	
-testPunt.o: testPunt.cpp Punt.h
-	g++ -c testPunt.cpp
-	
-Meting.o: Meting.cpp Meting.h
-	g++ -c Meting.cpp
+SOURCES       = testVaart.cpp \
+		Vaart.cpp
 
+OBJECTS       = Punt.o \
+		testVaart.o \
+		Meting.o \
+		Insprong.o \
+		Vaart.o
+
+TARGET        = testVaart
+
+####### Implicit rules
+
+.SUFFIXES: .o .cpp 
+
+.cpp.o:
+	g++ -c $(CXXFLAGS) -o "$@" "$<"
+
+####### Build rules
+
+all: Makefile $(TARGET)
+
+$(TARGET):  $(OBJECTS)  
+	g++ $(LFLAGS) -o $(TARGET) $(OBJECTS) $(OBJCOMP) $(LIBS)
+
+####### Compile
+
+
+testVaart.o: Vaart.cpp Vaart.h
 Punt.o: Punt.cpp Punt.h
-	g++ -c Punt.cpp
-Insprong.: Insprong.cpp Insprong.h
-	g++ -c Insprong.cpp
+Insprong.o: Insprong.cpp Insprong.h
+Meting.o: Meting.cpp Meting.h
+Vaart.o: Vaart.cpp Vaart.h
+
+
+clean:
+	rm -vf *.o testVaart

@@ -12,7 +12,7 @@ Punt::Punt(double px, double py, double pz)
 Punt::~Punt(){
 }
 void Punt::toon(int d){
-  std::cout<<"Punt:";
+    std::cout<<"Punt:";
     Insprong::springin(d);
     std::cout<<"X: ";
     std::cout<<getX();
