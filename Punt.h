@@ -1,3 +1,5 @@
+#ifndef PUNT_H
+#define PUNT_H
 class Punt
 {
 private:
@@ -7,6 +9,10 @@ private:
    
 public:
    Punt(double px, double py, double pz);
-   ~Punt();
    void toon(int d);
+   double getX();
+   double getY();
+   double getZ();
+   ~Punt();
 };
+#endif

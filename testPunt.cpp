@@ -1,4 +1,3 @@
-#include <stdio.h>
 #include "Punt.h"
 
 int main()
@@ -8,7 +7,9 @@ int main()
    printf("start\n");
    
    // maak dynamisch een object
-   p = new Punt(1.5, 4.6, 6.7);
+  p = new Punt(1.0,2.0,3.0);
+  p->toon(0);
+  delete p;
    
    printf("stop\n");
 }
