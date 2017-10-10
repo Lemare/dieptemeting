@@ -1,5 +1,6 @@
 #include "Driehoek.h"
 #include "Strook.h"
+#include <iostream>
 
 Strook::Strook(){}
 Strook::~Strook(){

@@ -1,7 +1,8 @@
-#ifdef STROOK_H
+#ifndef STROOK_H
 #define STROOK_H
+
 #include "Driehoek.h"
-#include <iostream>
+#include <vector>
 
 class Strook
 {
