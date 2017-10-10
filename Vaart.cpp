@@ -7,7 +7,6 @@
 #include <sstream>
 #include <iterator>
 
-Meting *m = new Meting();
 Vaart::Vaart(){
   nmetingen = 0;
 }
@@ -16,9 +15,9 @@ Vaart::~Vaart(){
 }
 
 void Vaart::toon(int d){
-  for(int i = 0; i < nmetingen; i++){
-      std::cout<<"Meting nr:"<<i<<"\n";
-      metingen[i]->toon(1);
+  for(d; d < nmetingen; d++){
+      std::cout<<"Meting nr: "<<d<<"\n";
+      metingen[d]->toon(1);
   }
 }
 void Vaart::voegbijmeting(Meting *m){
@@ -32,7 +31,6 @@ void Vaart::leesbestand(const char *naam)
 {
    std::string   lijn;
    std::ifstream fin;
-
    fin.open(naam);
    if(!fin.is_open())
    {
@@ -46,6 +44,8 @@ void Vaart::leesbestand(const char *naam)
    getline(fin, lijn);
    while(!fin.eof())
    {
+     
+    Meting *m = new Meting;
       // maak een stream van de string
       // lijn is gedeclareerd als string lijn
       std::stringstream strstr(lijn);
@@ -71,23 +71,17 @@ void Vaart::leesbestand(const char *naam)
 	//z-waarden lezen
 	for (unsigned int pos = 5; pos<woorden.size(); pos++){
 	    int z = naarint(woorden[pos]);
-	    //wordt juist uitgelezen
 	    Punt *p = new Punt(x,y,z);
 	    m -> voegbijpunt(p);
-	    m -> toon(0);
 	    j++;
 	  }
-	//voegbijmeting(m);
-	delete m;
-	m = new Meting();
-	std::cout<<"nieuwe meting";
-	}
 	
+	}
+	voegbijmeting(m);
       getline(fin, lijn);
       }
    
    std::cout << "Gelezen!\n";
-   toon(0);
 }
 
 bool Vaart::isLeeg(const std::string &bf)

@@ -11,6 +11,7 @@ Meting::~Meting(){
 
 void Meting::toon(int d){
   for(int i = 0; i < punten.size(); i++){
+      
       punten[i]->toon(1);
   }
 }
