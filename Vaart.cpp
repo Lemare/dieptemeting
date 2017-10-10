@@ -105,4 +105,13 @@ double Vaart::naardouble(const std::string &s)
    std::istringstream(s) >> d;
    return d;
 }
+/*void strokenMaken(){
+  for(int i = 0; i < nmetingen; i++){
+    new Strook *s;
+    Meting *m1 = metingen[i];
+    Meting *m2 = metingen[i+1];
+    for (Punt *p : m1
+  }
+  
+}*/
 

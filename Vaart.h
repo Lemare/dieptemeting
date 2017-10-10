@@ -20,6 +20,7 @@ public:
    bool isLeeg(const std::string &bf);
    int naarint(const std::string &s);
    double naardouble(const std::string &s);
+   //void strokenMaken();
 };
 
 #endif
