@@ -1,0 +1,4 @@
+Driehoek::Driehoek(){}
+Driehoek::~Driehoek(){
+  
+}
