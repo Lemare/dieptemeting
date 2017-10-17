@@ -12,5 +12,6 @@ private:
 public:
    Strook();
    ~Strook();
+   void voegbijDriehoek(Driehoek *);
 };
 #endif

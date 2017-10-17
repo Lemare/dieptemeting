@@ -20,3 +20,12 @@ void Meting::voegbijpunt(Punt *p){
  
  
 }
+
+int Meting::getSize(){
+    return punten.size();
+}
+
+Punt * Meting::getPunt(int t){
+    Punt *p = punten[t];
+    return p;
+}

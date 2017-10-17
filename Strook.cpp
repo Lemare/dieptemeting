@@ -8,3 +8,7 @@ Strook::~Strook(){
       delete driehoeken[i];
   }
 }
+void Strook::voegbijDriehoek(Driehoek *d){
+    
+    driehoeken.push_back(d);
+}

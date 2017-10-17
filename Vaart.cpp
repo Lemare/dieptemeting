@@ -11,13 +11,15 @@ Vaart::Vaart(){
   nmetingen = 0;
 }
 Vaart::~Vaart(){
-  
+  for(int i = 0; i < stroken.size(); i++){
+      delete stroken[i];
+  }
 }
 
 void Vaart::toon(int d){
-  for(d; d < nmetingen; d++){
-      std::cout<<"Meting nr: "<<d<<"\n";
-      metingen[d]->toon(1);
+  for(int i = 0; i < nmetingen; i++){
+      std::cout<<"Meting nr: "<<i<<"\n";
+      metingen[i]->toon(d);
   }
 }
 void Vaart::voegbijmeting(Meting *m){
@@ -105,13 +107,35 @@ double Vaart::naardouble(const std::string &s)
    std::istringstream(s) >> d;
    return d;
 }
-/*void strokenMaken(){
-  for(int i = 0; i < nmetingen; i++){
-    new Strook *s;
-    Meting *m1 = metingen[i];
-    Meting *m2 = metingen[i+1];
-    for (Punt *p : m1
-  }
-  
-}*/
+void Vaart::maakStroken()
+{
+   // voor alle metingen
+   for (int im=0; im<nmetingen; im++)
+   {
+      Meting *m1 = metingen[im];
+      Meting *m2 = metingen[im+1];
+
+      Strook *s = new Strook();
+      voegbijStrook(s);
+
+      // voor alle punten
+      for (int ip=0; ip<  m1->getSize()-1; ip++)
+      {
+         Punt *p1 = m1->getPunt(ip);
+         Punt *p2 = m1->getPunt(ip+1);
+         Punt *p3 = m2->getPunt(ip+1);
+         Punt *p4 = m2->getPunt(ip);
+
+         Driehoek *d1 = new Driehoek(p1, p2, p4);
+         Driehoek *d2 = new Driehoek(p2, p3, p4);
+         s->voegbijDriehoek(d1);
+         s->voegbijDriehoek(d2);
+      }
+   }
+   std::cout<<"Hierin gegaan";
+}
+
+void Vaart::voegbijStrook(Strook *s){
+    stroken.push_back(s);
+}
 

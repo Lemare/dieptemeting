@@ -12,6 +12,7 @@ int main()
    
    v = new Vaart();
    v-> leesbestand("DATA.dat");
+   v-> maakStroken();
    
    delete v; // geef Vaart vrij
 }

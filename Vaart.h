@@ -3,6 +3,7 @@
 #include "Punt.h"
 #include "Meting.h"
 #include <string>
+#include "Strook.h"
 
 
 class Vaart
@@ -10,6 +11,7 @@ class Vaart
 private:
    int   nmetingen;       // het aantal metingen in de lijst
    Meting *metingen[100]; // de lijst met metingen
+   std::vector<Strook *> stroken;
    
 public:
    Vaart();  // constructor
@@ -20,7 +22,8 @@ public:
    bool isLeeg(const std::string &bf);
    int naarint(const std::string &s);
    double naardouble(const std::string &s);
-   //void strokenMaken();
+   void maakStroken();
+   void voegbijStrook(Strook *s);
 };
 
 #endif

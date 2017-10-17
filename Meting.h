@@ -15,5 +15,7 @@ public:
    ~Meting(); // destructor
    void toon(int d);
    void voegbijpunt(Punt *p);
+   int getSize();
+   Punt * getPunt(int t);
 };
 #endif

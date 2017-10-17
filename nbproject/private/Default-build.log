@@ -1,0 +1,8 @@
+g++ -c -g -std=c++11 -o "Punt.o" "Punt.cpp"
+g++ -c -g -std=c++11 -o "testVaart.o" "testVaart.cpp"
+g++ -c -g -std=c++11 -o "Meting.o" "Meting.cpp"
+g++ -c -g -std=c++11 -o "Insprong.o" "Insprong.cpp"
+g++ -c -g -std=c++11 -o "Vaart.o" "Vaart.cpp"
+g++ -c -g -std=c++11 -o "Driehoek.o" "Driehoek.cpp"
+g++ -c -g -std=c++11 -o "Strook.o" "Strook.cpp"
+g++  -o testVaart Punt.o testVaart.o Meting.o Insprong.o Vaart.o Driehoek.o Strook.o  
