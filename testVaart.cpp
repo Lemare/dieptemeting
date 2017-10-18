@@ -13,6 +13,7 @@ int main()
    v = new Vaart();
    v-> leesbestand("DATA.dat");
    v-> maakStroken();
+   v-> berekenMinMax();
    
    delete v; // geef Vaart vrij
 }

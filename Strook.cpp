@@ -12,3 +12,6 @@ void Strook::voegbijDriehoek(Driehoek *d){
     
     driehoeken.push_back(d);
 }
+int Strook::getSize(){
+    return driehoeken.size();
+}

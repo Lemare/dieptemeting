@@ -4,6 +4,7 @@
 #include "Meting.h"
 #include <string>
 #include "Strook.h"
+#include "MinMax.h"
 
 
 class Vaart
@@ -24,6 +25,7 @@ public:
    double naardouble(const std::string &s);
    void maakStroken();
    void voegbijStrook(Strook *s);
+   MinMax * berekenMinMax();
 };
 
 #endif

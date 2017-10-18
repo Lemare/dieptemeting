@@ -13,5 +13,6 @@ public:
    Strook();
    ~Strook();
    void voegbijDriehoek(Driehoek *);
+   int getSize();
 };
 #endif

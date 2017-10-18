@@ -8,7 +8,9 @@
 class Meting
 {
 private:
-   std::vector<Punt *> punten; // de lijst met punten
+    // de lijst met punten
+    
+    std::vector<Punt *> punten;
    
 public:
    Meting();  // constructor

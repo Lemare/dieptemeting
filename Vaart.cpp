@@ -6,6 +6,7 @@
 #include <fstream>
 #include <sstream>
 #include <iterator>
+#include "MinMax.h"
 
 Vaart::Vaart(){
   nmetingen = 0;
@@ -42,7 +43,7 @@ void Vaart::leesbestand(const char *naam)
     for(int i= 0;  i < 8; i++){
 	 getline(fin,lijn);
     }
-
+   int aantallijnen = 0;
    getline(fin, lijn);
    while(!fin.eof())
    {
@@ -58,8 +59,7 @@ void Vaart::leesbestand(const char *naam)
       std::istream_iterator<std::string> end;
       std::vector<std::string> woorden(it, end);
       // Geef alle woorden weer 
-      for (unsigned int i=0; i<woorden.size(); i++)
-      {
+      
 	int aantal = naarint(woorden[0]);
 
 	double x = naardouble(woorden[3]);
@@ -78,11 +78,11 @@ void Vaart::leesbestand(const char *naam)
 	    j++;
 	  }
 	
-	}
+      
 	voegbijmeting(m);
-      getline(fin, lijn);
+        getline(fin, lijn);
+        
       }
-   
    std::cout << "Gelezen!\n";
 }
 
@@ -110,7 +110,7 @@ double Vaart::naardouble(const std::string &s)
 void Vaart::maakStroken()
 {
    // voor alle metingen
-   for (int im=0; im<nmetingen; im++)
+   for (int im=0; im<nmetingen-1; im++)
    {
       Meting *m1 = metingen[im];
       Meting *m2 = metingen[im+1];
@@ -132,10 +132,36 @@ void Vaart::maakStroken()
          s->voegbijDriehoek(d2);
       }
    }
-   std::cout<<"Hierin gegaan";
+   
+   
 }
 
 void Vaart::voegbijStrook(Strook *s){
     stroken.push_back(s);
 }
 
+MinMax * Vaart::berekenMinMax(){
+    MinMax * mm = new MinMax();
+    mm -> minX = metingen[0] -> getPunt(0)->getX();
+    mm -> maxX = metingen[0] -> getPunt(0)->getX();
+    mm -> minY = metingen[0] -> getPunt(0)->getY();
+    mm -> maxY = metingen[0] -> getPunt(0)->getY();
+    mm -> minZ = metingen[0] -> getPunt(0)->getZ();
+    mm -> maxZ = metingen[0] -> getPunt(0)->getZ();
+    for (int met = 0; met < nmetingen-1; met++){
+        Meting *m = metingen[met];
+        for(int i = 0; i < m->getSize()-1; i++){
+            Punt *p = m->getPunt(i);
+            if(p->getX()<= mm->minX) mm->minX = p->getX();
+            if(p->getX()>= mm->maxX) mm->maxX = p->getX();
+            if(p->getY()<= mm->minY) mm->minY = p->getY();
+            if(p->getY()>= mm->maxY) mm->maxY = p->getY();
+            if(p->getZ()<= mm->minZ) mm->minZ = p->getZ();
+            if(p->getZ()>= mm->maxZ) mm->maxZ = p->getZ();
+        }
+        
+    }
+    return mm;
+    
+    
+}

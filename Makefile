@@ -9,7 +9,9 @@ OBJECTS       = Punt.o \
 		Insprong.o \
 		Vaart.o \
 		Driehoek.o \
-		Strook.o
+		Strook.o \
+		MinMax.o \
+		MyWidget.o
 
 TARGET        = testVaart
 
@@ -37,6 +39,8 @@ Meting.o: Meting.cpp Meting.h
 Vaart.o: Vaart.cpp Vaart.h
 Strook.o: Strook.cpp Strook.h
 Driehoek.o: Driehoek.cpp Driehoek.h
+MinMax.o: MinMax.h
+MyWidget.o: MyWidget.h
 
 
 clean:
