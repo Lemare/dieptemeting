@@ -4,8 +4,6 @@
 
 class MinMax {
 public:
-    MinMax();
-    ~MinMax();
     double minX;
     double maxX;
     double minY;

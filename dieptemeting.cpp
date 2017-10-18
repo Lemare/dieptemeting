@@ -6,8 +6,7 @@
 
 int main()
 {
-   Punt   *p;
-   Meting *m;   
+ 
    Vaart  *v;
    
    v = new Vaart();

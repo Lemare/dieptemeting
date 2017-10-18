@@ -43,7 +43,6 @@ void Vaart::leesbestand(const char *naam)
     for(int i= 0;  i < 8; i++){
 	 getline(fin,lijn);
     }
-   int aantallijnen = 0;
    getline(fin, lijn);
    while(!fin.eof())
    {
@@ -60,7 +59,7 @@ void Vaart::leesbestand(const char *naam)
       std::vector<std::string> woorden(it, end);
       // Geef alle woorden weer 
       
-	int aantal = naarint(woorden[0]);
+	//int aantal = naarint(woorden[0]);
 
 	double x = naardouble(woorden[3]);
 
@@ -161,6 +160,7 @@ MinMax * Vaart::berekenMinMax(){
         }
         
     }
+    std::cout<< mm->minZ << " ";
     return mm;
     
     
