@@ -8,6 +8,7 @@
 #include <iterator>
 #include "MinMax.h"
 
+
 Vaart::Vaart(){
   nmetingen = 0;
 }
@@ -139,6 +140,9 @@ void Vaart::voegbijStrook(Strook *s){
     stroken.push_back(s);
 }
 
+
+
+
 MinMax * Vaart::berekenMinMax(){
     MinMax * mm = new MinMax();
     mm -> minX = metingen[0] -> getPunt(0)->getX();
@@ -160,8 +164,15 @@ MinMax * Vaart::berekenMinMax(){
         }
         
     }
-    std::cout<< mm->minZ << " ";
     return mm;
     
+    
+}
+
+void Vaart::teken(QPainter *p){
+    MinMax *minmax = berekenMinMax();
+    //for(int i = 0; i < stroken.size(); i++){
+        stroken[0]->teken(p,minmax);
+    //}
     
 }

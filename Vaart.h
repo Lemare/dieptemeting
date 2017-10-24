@@ -4,8 +4,7 @@
 #include "Meting.h"
 #include <string>
 #include "Strook.h"
-#include "MinMax.h"
-
+#include <QPainter>
 
 class Vaart
 {
@@ -26,6 +25,7 @@ public:
    void maakStroken();
    void voegbijStrook(Strook *s);
    MinMax * berekenMinMax();
+   void teken(QPainter *p);
 };
 
 #endif

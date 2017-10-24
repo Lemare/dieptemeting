@@ -3,8 +3,9 @@
 
 #include "Driehoek.h"
 #include <vector>
+#include <QPainter>
 
-class Strook
+class Strook 
 {
 private:
   std::vector<Driehoek *> driehoeken;
@@ -14,5 +15,6 @@ public:
    ~Strook();
    void voegbijDriehoek(Driehoek *);
    int getSize();
+   void teken(QPainter *p,MinMax *m);
 };
 #endif

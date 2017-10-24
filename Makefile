@@ -12,10 +12,10 @@ MAKEFILE      = Makefile
 
 CC            = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang
 CXX           = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++
-DEFINES       = -DQT_DEPRECATED_WARNINGS -DQT_NO_DEBUG -DQT_GUI_LIB -DQT_CORE_LIB
+DEFINES       = -DQT_DEPRECATED_WARNINGS -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB
 CFLAGS        = -pipe -O2 $(EXPORT_ARCH_ARGS) -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk -mmacosx-version-min=10.10 -Wall -W -fPIC $(DEFINES)
 CXXFLAGS      = -pipe -stdlib=libc++ -O2 -std=gnu++11 $(EXPORT_ARCH_ARGS) -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk -mmacosx-version-min=10.10 -Wall -W -fPIC $(DEFINES)
-INCPATH       = -I. -I. -I/usr/local/Cellar/qt/5.9.2/lib/QtGui.framework/Headers -I/usr/local/Cellar/qt/5.9.2/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk/System/Library/Frameworks/OpenGL.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk/System/Library/Frameworks/AGL.framework/Headers -I/usr/local/Cellar/qt/5.9.2/mkspecs/macx-clang -F/usr/local/Cellar/qt/5.9.2/lib
+INCPATH       = -I. -I. -I/usr/local/Cellar/qt/5.9.2/lib/QtWidgets.framework/Headers -I/usr/local/Cellar/qt/5.9.2/lib/QtGui.framework/Headers -I/usr/local/Cellar/qt/5.9.2/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk/System/Library/Frameworks/OpenGL.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk/System/Library/Frameworks/AGL.framework/Headers -I/usr/local/Cellar/qt/5.9.2/mkspecs/macx-clang -F/usr/local/Cellar/qt/5.9.2/lib
 QMAKE         = /usr/local/opt/qt/bin/qmake
 DEL_FILE      = rm -f
 CHK_DIR_EXISTS= test -d
@@ -38,7 +38,7 @@ DISTNAME      = dieptemeting1.0.0
 DISTDIR = /Users/Ruben/Documents/C:C++/dieptemeting/.tmp/dieptemeting1.0.0
 LINK          = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++
 LFLAGS        = -stdlib=libc++ -headerpad_max_install_names $(EXPORT_ARCH_ARGS) -Wl,-syslibroot,/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk -mmacosx-version-min=10.10 -Wl,-rpath,@executable_path/Frameworks
-LIBS          = $(SUBLIBS) -F/usr/local/Cellar/qt/5.9.2/lib -framework QtGui -framework QtCore -framework DiskArbitration -framework IOKit -framework OpenGL -framework AGL 
+LIBS          = $(SUBLIBS) -F/usr/local/Cellar/qt/5.9.2/lib -framework QtWidgets -framework QtGui -framework QtCore -framework DiskArbitration -framework IOKit -framework OpenGL -framework AGL 
 AR            = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ar cq
 RANLIB        = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ranlib -s
 SED           = sed
@@ -50,17 +50,19 @@ OBJECTS_DIR   = ./
 
 ####### Files
 
-SOURCES       = dieptemeting.cpp \
-		Driehoek.cpp \
+SOURCES       = Driehoek.cpp \
 		Insprong.cpp \
+		main.cpp \
 		Meting.cpp \
+		MyWidget.cpp \
 		Punt.cpp \
 		Strook.cpp \
 		Vaart.cpp 
-OBJECTS       = dieptemeting.o \
-		Driehoek.o \
+OBJECTS       = Driehoek.o \
 		Insprong.o \
+		main.o \
 		Meting.o \
+		MyWidget.o \
 		Punt.o \
 		Strook.o \
 		Vaart.o
@@ -238,6 +240,7 @@ DIST          = /usr/local/Cellar/qt/5.9.2/mkspecs/features/spec_pre.prf \
 		/usr/local/Cellar/qt/5.9.2/mkspecs/features/resources.prf \
 		/usr/local/Cellar/qt/5.9.2/mkspecs/features/moc.prf \
 		/usr/local/Cellar/qt/5.9.2/mkspecs/features/unix/opengl.prf \
+		/usr/local/Cellar/qt/5.9.2/mkspecs/features/uic.prf \
 		/usr/local/Cellar/qt/5.9.2/mkspecs/features/unix/thread.prf \
 		/usr/local/Cellar/qt/5.9.2/mkspecs/features/qmake_use.prf \
 		/usr/local/Cellar/qt/5.9.2/mkspecs/features/file_copies.prf \
@@ -254,10 +257,11 @@ DIST          = /usr/local/Cellar/qt/5.9.2/mkspecs/features/spec_pre.prf \
 		MyWidget.h \
 		Punt.h \
 		Strook.h \
-		Vaart.h dieptemeting.cpp \
-		Driehoek.cpp \
+		Vaart.h Driehoek.cpp \
 		Insprong.cpp \
+		main.cpp \
 		Meting.cpp \
+		MyWidget.cpp \
 		Punt.cpp \
 		Strook.cpp \
 		Vaart.cpp
@@ -452,6 +456,7 @@ Makefile: dieptemeting.pro /usr/local/Cellar/qt/5.9.2/mkspecs/macx-clang/qmake.c
 		/usr/local/Cellar/qt/5.9.2/mkspecs/features/resources.prf \
 		/usr/local/Cellar/qt/5.9.2/mkspecs/features/moc.prf \
 		/usr/local/Cellar/qt/5.9.2/mkspecs/features/unix/opengl.prf \
+		/usr/local/Cellar/qt/5.9.2/mkspecs/features/uic.prf \
 		/usr/local/Cellar/qt/5.9.2/mkspecs/features/unix/thread.prf \
 		/usr/local/Cellar/qt/5.9.2/mkspecs/features/qmake_use.prf \
 		/usr/local/Cellar/qt/5.9.2/mkspecs/features/file_copies.prf \
@@ -462,6 +467,7 @@ Makefile: dieptemeting.pro /usr/local/Cellar/qt/5.9.2/mkspecs/macx-clang/qmake.c
 		/usr/local/Cellar/qt/5.9.2/mkspecs/features/yacc.prf \
 		/usr/local/Cellar/qt/5.9.2/mkspecs/features/lex.prf \
 		dieptemeting.pro \
+		/usr/local/Cellar/qt/5.9.2/lib/QtWidgets.framework/QtWidgets.prl \
 		/usr/local/Cellar/qt/5.9.2/lib/QtGui.framework/QtGui.prl \
 		/usr/local/Cellar/qt/5.9.2/lib/QtCore.framework/QtCore.prl
 	$(QMAKE) -o Makefile dieptemeting.pro
@@ -639,6 +645,7 @@ Makefile: dieptemeting.pro /usr/local/Cellar/qt/5.9.2/mkspecs/macx-clang/qmake.c
 /usr/local/Cellar/qt/5.9.2/mkspecs/features/resources.prf:
 /usr/local/Cellar/qt/5.9.2/mkspecs/features/moc.prf:
 /usr/local/Cellar/qt/5.9.2/mkspecs/features/unix/opengl.prf:
+/usr/local/Cellar/qt/5.9.2/mkspecs/features/uic.prf:
 /usr/local/Cellar/qt/5.9.2/mkspecs/features/unix/thread.prf:
 /usr/local/Cellar/qt/5.9.2/mkspecs/features/qmake_use.prf:
 /usr/local/Cellar/qt/5.9.2/mkspecs/features/file_copies.prf:
@@ -649,6 +656,7 @@ Makefile: dieptemeting.pro /usr/local/Cellar/qt/5.9.2/mkspecs/macx-clang/qmake.c
 /usr/local/Cellar/qt/5.9.2/mkspecs/features/yacc.prf:
 /usr/local/Cellar/qt/5.9.2/mkspecs/features/lex.prf:
 dieptemeting.pro:
+/usr/local/Cellar/qt/5.9.2/lib/QtWidgets.framework/QtWidgets.prl:
 /usr/local/Cellar/qt/5.9.2/lib/QtGui.framework/QtGui.prl:
 /usr/local/Cellar/qt/5.9.2/lib/QtCore.framework/QtCore.prl:
 qmake: FORCE
@@ -682,7 +690,7 @@ distdir: FORCE
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/local/Cellar/qt/5.9.2/mkspecs/features/data/dummy.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents Driehoek.h Insprong.h Meting.h MinMax.h MyWidget.h Punt.h Strook.h Vaart.h $(DISTDIR)/
-	$(COPY_FILE) --parents dieptemeting.cpp Driehoek.cpp Insprong.cpp Meting.cpp Punt.cpp Strook.cpp Vaart.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents Driehoek.cpp Insprong.cpp main.cpp Meting.cpp MyWidget.cpp Punt.cpp Strook.cpp Vaart.cpp $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -718,6 +726,8 @@ compiler_moc_header_make_all:
 compiler_moc_header_clean:
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
+compiler_uic_make_all:
+compiler_uic_clean:
 compiler_rez_source_make_all:
 compiler_rez_source_clean:
 compiler_yacc_decl_make_all:
@@ -730,28 +740,45 @@ compiler_clean: compiler_moc_predefs_clean
 
 ####### Compile
 
-dieptemeting.o: dieptemeting.cpp Punt.h \
-		Meting.h \
-		Vaart.h \
-		Strook.h \
-		Driehoek.h \
-		MinMax.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o dieptemeting.o dieptemeting.cpp
-
 Driehoek.o: Driehoek.cpp Punt.h \
-		Driehoek.h
+		Driehoek.h \
+		MinMax.h \
+		/usr/local/Cellar/qt/5.9.2/lib/QtGui.framework/Headers/QPainter \
+		/usr/local/Cellar/qt/5.9.2/lib/QtGui.framework/Headers/qpainter.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Driehoek.o Driehoek.cpp
 
 Insprong.o: Insprong.cpp Insprong.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Insprong.o Insprong.cpp
+
+main.o: main.cpp /usr/local/Cellar/qt/5.9.2/lib/QtWidgets.framework/Headers/QApplication \
+		/usr/local/Cellar/qt/5.9.2/lib/QtWidgets.framework/Headers/qapplication.h \
+		MyWidget.h \
+		/usr/local/Cellar/qt/5.9.2/lib/QtWidgets.framework/Headers/QWidget \
+		/usr/local/Cellar/qt/5.9.2/lib/QtWidgets.framework/Headers/qwidget.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o main.cpp
 
 Meting.o: Meting.cpp Meting.h \
 		Punt.h \
 		Vaart.h \
 		Strook.h \
 		Driehoek.h \
-		MinMax.h
+		MinMax.h \
+		/usr/local/Cellar/qt/5.9.2/lib/QtGui.framework/Headers/QPainter \
+		/usr/local/Cellar/qt/5.9.2/lib/QtGui.framework/Headers/qpainter.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Meting.o Meting.cpp
+
+MyWidget.o: MyWidget.cpp MyWidget.h \
+		/usr/local/Cellar/qt/5.9.2/lib/QtWidgets.framework/Headers/QWidget \
+		/usr/local/Cellar/qt/5.9.2/lib/QtWidgets.framework/Headers/qwidget.h \
+		Vaart.h \
+		Punt.h \
+		Meting.h \
+		Strook.h \
+		Driehoek.h \
+		MinMax.h \
+		/usr/local/Cellar/qt/5.9.2/lib/QtGui.framework/Headers/QPainter \
+		/usr/local/Cellar/qt/5.9.2/lib/QtGui.framework/Headers/qpainter.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o MyWidget.o MyWidget.cpp
 
 Punt.o: Punt.cpp Punt.h \
 		Insprong.h
@@ -759,6 +786,9 @@ Punt.o: Punt.cpp Punt.h \
 
 Strook.o: Strook.cpp Driehoek.h \
 		Punt.h \
+		MinMax.h \
+		/usr/local/Cellar/qt/5.9.2/lib/QtGui.framework/Headers/QPainter \
+		/usr/local/Cellar/qt/5.9.2/lib/QtGui.framework/Headers/qpainter.h \
 		Strook.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Strook.o Strook.cpp
 
@@ -767,7 +797,9 @@ Vaart.o: Vaart.cpp Meting.h \
 		Vaart.h \
 		Strook.h \
 		Driehoek.h \
-		MinMax.h
+		MinMax.h \
+		/usr/local/Cellar/qt/5.9.2/lib/QtGui.framework/Headers/QPainter \
+		/usr/local/Cellar/qt/5.9.2/lib/QtGui.framework/Headers/qpainter.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Vaart.o Vaart.cpp
 
 ####### Install
