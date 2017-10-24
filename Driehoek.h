@@ -14,6 +14,6 @@ private:
 public:
    Driehoek(Punt *pp1, Punt *pp2, Punt *pp3);
    ~Driehoek();
-   void teken(QPainter *p, MinMax *m);
+   void teken(QPainter *p, MinMax *m,int i, int j);
 };
 #endif

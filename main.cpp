@@ -5,8 +5,8 @@ int main(int argc, char *argv[])
 {
    QApplication app(argc, argv);
    MyWidget window;
-   window.resize(500, 500);
-   window.setWindowTitle(QApplication::translate("childwidget", "Child widget"));
+   window.resize(1000, 1000);
+   window.setWindowTitle(QApplication::translate("childwidget", "Boot"));
    window.show();
 
    

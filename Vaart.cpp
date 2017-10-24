@@ -171,8 +171,8 @@ MinMax * Vaart::berekenMinMax(){
 
 void Vaart::teken(QPainter *p){
     MinMax *minmax = berekenMinMax();
-    //for(int i = 0; i < stroken.size(); i++){
-        stroken[0]->teken(p,minmax);
-    //}
+    for(int i = 0; i < stroken.size(); i++){
+        stroken[i]->teken(p,minmax,i);
+    }
     
 }

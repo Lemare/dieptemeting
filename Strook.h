@@ -15,6 +15,6 @@ public:
    ~Strook();
    void voegbijDriehoek(Driehoek *);
    int getSize();
-   void teken(QPainter *p,MinMax *m);
+   void teken(QPainter *p,MinMax *m,int j);
 };
 #endif

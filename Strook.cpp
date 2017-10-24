@@ -14,11 +14,11 @@ void Strook::voegbijDriehoek(Driehoek *d){
 int Strook::getSize(){
     return driehoeken.size();
 }
-void Strook::teken(QPainter *p, MinMax *m){
+void Strook::teken(QPainter *p, MinMax *m,int j){
     
 
     
-    //for(int i = 0; i < driehoeken.size(); i++){
-        driehoeken[0]->teken(p,m);
-    //}
+    for(int i = 0; i < driehoeken.size(); i++){
+        driehoeken[i]->teken(p,m,i,j);
+    }
 }
